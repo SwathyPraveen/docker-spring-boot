@@ -19,13 +19,14 @@ spec:
       {{- end }}
       labels:
         {{- include "swathy-charts.labels" . | nindent 8 }}
-	{{- with .Values.podLabels }}
+        {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
       - name: myk8secret
+      {{- end }}
       serviceAccountName: {{ include "swathy-charts.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
